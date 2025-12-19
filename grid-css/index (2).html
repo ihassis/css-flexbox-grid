@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier 2 : CSS Grid Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen grid grid-cols-[200px_1fr_1fr] grid-rows-[60px_1fr_40px] gap-0">
+        <!-- Top Bar -->
+        <header class="bg-slate-800 text-white p-5 flex items-center text-lg font-medium col-span-3">
+            📊 Admin Dashboard
+        </header>
+
+        <!-- Side Menu -->
+        <aside class="bg-slate-700 text-white p-0 pt-8 row-span-2">
+            <h3 class="px-5 pb-5 text-sm uppercase text-slate-400 font-semibold">Menu</h3>
+            <ul>
+                <li class="px-5 py-3 cursor-pointer hover:bg-white/10 text-sm transition-colors">🏠 Accueil</li>
+                <li class="px-5 py-3 cursor-pointer hover:bg-white/10 text-sm transition-colors">📦 Produits</li>
+                <li class="px-5 py-3 cursor-pointer hover:bg-white/10 text-sm transition-colors">👥 Clients</li>
+                <li class="px-5 py-3 cursor-pointer hover:bg-white/10 text-sm transition-colors">⚙️ Paramètres</li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="bg-white p-8 overflow-y-auto">
+            <h3 class="text-xl text-slate-800 font-medium mb-2">Statistiques Principales</h3>
+            <p class="text-slate-500 text-sm mb-8">Ici se trouve le graphique des ventes...</p>
+            
+            <div class="bg-blue-50 text-blue-700 p-12 rounded-lg text-center text-sm font-medium mb-5">
+                [Graphique Ventes]
+            </div>
+            <div class="bg-green-50 text-green-700 p-12 rounded-lg text-center text-sm font-medium">
+                [Graphique Visiteurs]
+            </div>
+        </main>
+
+        <!-- Notifications -->
+        <aside class="bg-gray-500 p-5 overflow-y-auto">
+            <h3 class="text-lg text-slate-800 font-medium mb-6">🔔 Notifications</h3>
+            
+            <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+                <strong class="text-slate-800 text-sm">Jean D.</strong> a passé commande.
+                <div class="text-slate-400 text-xs mt-1">Il y a 2 min</div>
+            </div>
+            
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+                <strong class="text-slate-800 text-sm">Stock faible</strong> sur "Iphone 15".
+                <div class="text-slate-400 text-xs mt-1">Il y a 10 min</div>
+            </div>
+        </aside>
+
+        <!-- Footer -->
+        <footer class="bg-white flex items-center justify-end px-8 text-slate-400 text-xs border-t border-slate-200 col-span-3">
+            © 2024 Mon Entreprise
+        </footer>
+    </div>
+
+    <script>
+        // Responsive behavior
+        function updateGridLayout() {
+            const grid = document.querySelector('body > div');
+            if (window.innerWidth <= 768) {
+                grid.classList.remove('grid-cols-[200px_1fr_1fr]');
+                grid.classList.add('grid-cols-1');
+                document.querySelector('header').classList.remove('col-span-3');
+                document.querySelector('footer').classList.remove('col-span-3');
+            } else {
+                grid.classList.add('grid-cols-[200px_1fr_1fr]');
+                grid.classList.remove('grid-cols-1');
+                document.querySelector('header').classList.add('col-span-3');
+                document.querySelector('footer').classList.add('col-span-3');
+            }
+        }
+
+        // Initial check
+        updateGridLayout();
+        
+        // Update on resize
+        window.addEventListener('resize', updateGridLayout);
+    </script>
+</body>
+</html>
